@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ConsoleCommunicationClient/ConsoleCommunicationClient.csproj" />
+  <Project Path="ConsoleCommunicationServer/ConsoleCommunicationServer.csproj" />
+</Solution>

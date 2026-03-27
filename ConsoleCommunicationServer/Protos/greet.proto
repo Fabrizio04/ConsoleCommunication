@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "ConsoleCommunication.Shared";
+
+enum StatoServer {
+  OK = 0;
+  SOVRACCARICO = 1;
+  ERRORE = 2;
+}
+
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply);
+  rpc Countdown (HelloRequest) returns (stream HelloReply); // Il segreto è la parola 'stream' davanti alla risposta
+  rpc MonitoraSistema (HelloRequest) returns (stream MonitorResponse);
+  rpc ConversazioneSpeciale (stream HelloRequest) returns (stream HelloReply); // Entrambi i parametri hanno la parola 'stream'
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+}
+
+message MonitorResponse {
+  int32 cpuUsage = 1;
+  StatoServer stato = 2;
+  repeated string logRecenti = 3; // 'repeated' è il modo gRPC per dire List<string>
+}
